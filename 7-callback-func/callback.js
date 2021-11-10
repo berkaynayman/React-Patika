@@ -18,6 +18,7 @@ sayHi(() => {
 */
 
 import fetch from "node-fetch";
+import axios from "axios";
 
 /*
 fetch("https://jsonplaceholder.typicode.com/users")
@@ -69,6 +70,7 @@ async function getData(){
 getData()
 */
 
+/*
 (async() => {
     const user = await(
         await fetch("https://jsonplaceholder.typicode.com/users/1")
@@ -81,6 +83,25 @@ getData()
     const post2 = await(
         await fetch("https://jsonplaceholder.typicode.com/posts/2")
     ).json();
+
+    console.log(`USER YUKLENDİ ${user}`);
+    console.log(user);
+
+    console.log(`POST1 YUKLENDİ ${post1}`);
+    console.log(post1);
+
+    console.log(`POST2 YUKLENDİ ${post2}`);
+    console.log(post2);
+})()
+*/
+
+//AXIOS
+(async() => {
+    const { data: user }  = await axios("https://jsonplaceholder.typicode.com/users/1")
+
+    const { data: post1 } = await axios("https://jsonplaceholder.typicode.com/posts/1")
+
+    const { data: post2 } = await axios("https://jsonplaceholder.typicode.com/posts/2")
 
     console.log(`USER YUKLENDİ ${user}`);
     console.log(user);
