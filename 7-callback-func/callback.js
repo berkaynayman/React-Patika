@@ -96,6 +96,7 @@ getData()
 */
 
 //AXIOS
+/*
 (async() => {
     const { data: user }  = await axios("https://jsonplaceholder.typicode.com/users/1")
 
@@ -112,3 +113,73 @@ getData()
     console.log(`POST2 YUKLENDİ ${post2}`);
     console.log(post2);
 })()
+*/
+
+/*
+const getComments = (number) => {
+    return new Promise((resolve, reject) => {
+        if(number === 1){
+            resolve({ text: "Selam" })
+        }
+        reject("bir problem oluştu")
+    });
+};
+
+getComments(2)
+    .then((data) => console.log(data))
+    .catch((e) => console.log(e))
+*/
+
+const getUser = () => {
+    return new Promise(async (resolve, reject) => {
+        const {data} = await axios("https://jsonplaceholder.typicode.com/users/1")
+        resolve(data)
+        reject("bir problem var")
+    });
+};
+
+const getPost = (post_id) => {
+    return new Promise(async (resolve, reject) => {
+        const { data } = await axios(`https://jsonplaceholder.typicode.com/posts/${post_id}`)
+    resolve(data)
+    });
+};
+
+/*
+getUser()
+    .then((data) => console.log(data))
+    .catch((e)   => console.log(e))
+
+getPost(1)
+    .then((data) => console.log(data))
+*/
+
+/*
+(async () => {
+    await getUser()
+    .then((data) => console.log(data))
+    .catch((e)   => console.log(e))
+
+    await getPost(1)
+        .then((data) => console.log(data))
+})();
+*/
+
+/*
+(async () => {
+    try {
+        const users = await getUser()
+        const post  = await getPost(1)
+    
+        console.log(users);
+        console.log(post); 
+    } catch (e) {
+        console.log(e);
+    }
+    
+})()
+*/
+
+Promise.all([getUser(), getPost(1)])
+.then(console.log)
+.catch(console.log)
